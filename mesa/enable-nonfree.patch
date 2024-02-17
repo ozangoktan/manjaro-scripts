@@ -1,0 +1,12 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 5e90485..87dd1b7 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -133,6 +133,7 @@ build() {
+     -D valgrind=enabled
+     -D vulkan-drivers=amd,intel,intel_hasvk,swrast,virtio
+     -D vulkan-layers=device-select,intel-nullhw,overlay
++    -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
+   )
+ 
+   # Build only minimal debug info to reduce size

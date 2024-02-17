@@ -1,0 +1,61 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index ea20bff..79477a6 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -1,23 +1,29 @@
+ # Maintainer: Bernhard Landauer <bernhard@manjaro.org>
+ 
+ pkgname=kwin
+-pkgver=5.27.10.r25889.gf3618ffe9d
++pkgver=5.27.10.r24397.g98cf21d647
+ pkgrel=1
+ pkgdesc='An easy to use, but flexible, composited Window Manager'
+-arch=(x86_64 aarch64)
++commit=98cf21d647c17345d6f9224c13ddbc9bf08b5e14
++arch=(x86_64)
+ url='https://kde.org/plasma-desktop/'
+ license=(LGPL)
+ replaces=($pkgname-git)
+-depends=(breeze kcmutils kglobalacceld kscreenlocker lcms2 libdisplay-info libqaccessibilityclient libxcvt pipewire-session-manager
+-         plasma-framework xcb-util-cursor qt6-multimedia qt6-sensors)
+-makedepends=(git extra-cmake-modules qt6-tools kdoctools krunner wayland-protocols plasma-wayland-protocols python xorg-xwayland)
++depends=(breeze kcmutils5 kscreenlocker lcms2 libdisplay-info libqaccessibilityclient libxcvt pipewire-session-manager
++         plasma-framework5 xcb-util-cursor qt6-multimedia qt6-sensors)
++makedepends=(git extra-cmake-modules qt6-tools kdoctools5 krunner5 wayland-protocols plasma-wayland-protocols python xorg-xwayland)
+ optdepends=('maliit-keyboard: virtual keyboard for kwin-wayland')
+ replaces=(kwayland-server)
++provides=(${pkgname})
+ groups=(plasma)
+-source=("git+https://github.com/KDE/$pkgname.git")
+-install=$pkgname.install
+-sha256sums=('SKIP')
+-
++source=("git+https://github.com/KDE/$pkgname.git#commit=$commit"
++        "https://invent.kde.org/plasma/kwin/-/commit/5ae170f1.patch")
++sha256sums=('SKIP'
++            'SKIP')
++validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
++              '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
++              'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
++              '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
+ pkgver() {
+   cd $pkgname
+   _ver=5.27.10
+@@ -25,15 +31,14 @@ pkgver() {
+ }
+ 
+ prepare() {
+-  cd $pkgname
++  patch -d $pkgname -p1 < 5ae170f1.patch
+ }
+ 
+ build() {
+   cmake -B build -S $pkgname \
+-    -DQT_MAJOR_VERSION=6 \
+     -DCMAKE_INSTALL_LIBEXECDIR=lib \
+     -DBUILD_TESTING=OFF
+-  cmake --build build
++  cmake --build build -j $(nproc)
+ }
+ 
+ package() {
