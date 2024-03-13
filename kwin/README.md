@@ -1,3 +1,5 @@
+***These instructions are obsolete as of kwin 5.27.11 release***
+
 # Kwin
 Fixes pipewire causing heavy stuttering.
 
