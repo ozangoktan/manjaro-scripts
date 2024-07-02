@@ -1,10 +1,10 @@
 diff --git a/PKGBUILD b/PKGBUILD
-index 73b5e10..13e6096 100644
+index 5b14142..426d67d 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
-@@ -157,6 +157,7 @@ build() {
+@@ -156,6 +156,7 @@ build() {
      -D valgrind=enabled
-     -D vulkan-drivers=amd,intel,intel_hasvk,swrast,virtio,nouveau-experimental
+     -D vulkan-drivers=amd,intel,intel_hasvk,swrast,virtio,nouveau
      -D vulkan-layers=device-select,intel-nullhw,overlay
 +    -D video-codecs=all
    )
