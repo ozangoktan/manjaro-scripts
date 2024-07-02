@@ -1,11 +1,11 @@
 # Mesa
 Enables nonfree video codecs in manjaro mesa stable release.
 
-**These instructions are only for mesa packages version 24.0.8-1**
+**These instructions are only for mesa packages version 24.1.1-1**
 
     git clone https://gitlab.manjaro.org/packages/extra/mesa/
     cd mesa
-    git reset --hard a69e0afc3f406a8a0225b5a7c86994d136cca515
+    git reset --hard bc67b2c735450efaedea8c5aa213e750a360dc0f
     git apply ../enable-nonfree.patch
     makepkg --syncdeps -f
     makepkg --install
