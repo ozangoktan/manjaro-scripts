@@ -1,3 +1,5 @@
+***These instructions are obsolete as of mesa 24.1.6 release***
+
 # Mesa
 Enables nonfree video codecs in manjaro mesa stable release.
 
